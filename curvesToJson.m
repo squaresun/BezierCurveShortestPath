@@ -1,4 +1,4 @@
-function [fid] = curvesToJson(outJson, filename)
+function [] = curvesToJson(outJson, filename)
 
 for i = 1:numel(outJson.curves)
     curveBuf = outJson.curves{i};
