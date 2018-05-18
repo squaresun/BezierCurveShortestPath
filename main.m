@@ -14,13 +14,9 @@ for i = 1:numel(beziers)
 	plotBezier(beziers{i});
 end
 
-fitnessFcn = @(t)norm(beziers{1}(t(1)) - beziers{2}(t(2)));
-
-result = ga(fitnessFcn, 2);
-
 f = createFitnessFunc(beziers);
 
-f([0.5 0.5])
+result = ga(f, 2);
 
 result = normT(result);
 

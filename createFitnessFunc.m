@@ -1,6 +1,6 @@
 function [f] = createFitnessFunc(beziers)
 
-f = @(t) rearrangeMat(cell2mat(cellfun(@(bez, i) bez(t(i)), beziers, num2cell(1:length(t)), 'UniformOutput', false)));
+f = @(t) norm(diff(rearrangeMat(cell2mat(cellfun(@(bez, i) bez(t(i)), beziers, num2cell(1:length(t)), 'UniformOutput', false)))));
 
 function [pts] = rearrangeMat(row)
 

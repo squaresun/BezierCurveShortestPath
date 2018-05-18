@@ -30,25 +30,3 @@ for j = 1:m
     val(j,1) = X(n,n);
     val(j,2) = Y(n,n);
 end
-
-function [result] = normT(t)
-
-result = t;
-
-for i = 1:numel(result)
-    while result(i) < 0
-        result(i) += 1;
-    end
-    while result(i) > 1
-        result(i) -= 1;
-    end
-end
-
-function [] = plotBezier(bez)
-
-t = linspace(0,1,100);
-
-p = bez(t);
-
-plot(p(:,1),p(:,2),'b-','LineWidth',2);
-    
