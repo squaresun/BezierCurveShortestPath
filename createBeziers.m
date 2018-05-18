@@ -5,8 +5,7 @@ for i = 1:numel(curves)
     p = curves{i};
     if p(size(p, 1), :) ~= p(1, :)
         newIndex = size(p, 1) + 1;
-        p(newIndex, 1) = p(1, 1);
-        p(newIndex, 2) = p(1, 2);
+        p(newIndex, :) = p(1, :);
     end
     beziers{i} = @(t)evalBezier(p, t);
 end

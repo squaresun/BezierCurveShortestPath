@@ -14,16 +14,21 @@ for i = 1:numel(beziers)
 	plotBezier(beziers{i});
 end
 
-f = createFitnessFunc(beziers);
+f = createFitnessFunc(beziers, inJson.a, inJson.b);
 
-result = ga(f, 2);
+result = normT(ga(f, numel(beziers)));
 
-result = normT(result);
+pts = [];
+pts(1, :) = inJson.a;
+for i = 1:numel(beziers)
+	pts(i + 1, 1) = beziers{i}(result(i))(1);
+	pts(i + 1, 2) = beziers{i}(result(i))(2);
+end
+pts(2 + numel(beziers), :) = inJson.b;
 
-plot(beziers{1}(result(1))(1),beziers{1}(result(1))(2),'ro','MarkerSize',10,'MarkerFaceColor','r');
-plot(beziers{2}(result(2))(1),beziers{2}(result(2))(2),'ro','MarkerSize',10,'MarkerFaceColor','r');
+plotPath(pts);
 
 curvesToJson(inJson, 'output.json');
 
-title(['7 Bezier curve with 7 control points']);
-axis([0 1 0 1]);
+title(['Genetic Algorithm']);
+axis([0 2 0 2]);
