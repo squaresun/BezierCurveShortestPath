@@ -6,7 +6,7 @@ figure(1);
 hold on; box on;
 set(gca,'Fontsize',16);
 
-inJson = (loadjson('input.json')).bezierCurves;
+inJson = getfield(loadjson('input.json'), 'bezierCurves');
 
 beziers = createBeziers(inJson.curves);
 
@@ -16,13 +16,12 @@ end
 
 f = createFitnessFunc(beziers, inJson.a, inJson.b);
 
-result = normT(ga(f, numel(beziers)));
+result = ga(f, numel(beziers), [], [], [], [], zeros(1, numel(beziers)), ones(1, numel(beziers)))
 
 pts = [];
 pts(1, :) = inJson.a;
 for i = 1:numel(beziers)
-	pts(i + 1, 1) = beziers{i}(result(i))(1);
-	pts(i + 1, 2) = beziers{i}(result(i))(2);
+    pts(i + 1, :) = beziers{i}(result(i));
 end
 pts(2 + numel(beziers), :) = inJson.b;
 
