@@ -1,4 +1,5 @@
 addpath('./jsonlab/');
+addpath('./CustomGA/');
 
 close all;
 
