@@ -6,30 +6,40 @@ S_old = zeros(size(S));
 
 plotter = [];
 
-for retry = 1:100
-    while norm(diff(fitness(f, S) - fitness(f, S_old))) > 0.001
-        S_old = S;
-        
-        S = wrw(f, S);
+retry = 1;
 
-        S = reproduction(S, 10);
-        
-        S = mutation(S, 10);
+while retry < 100% && f(mostFit(f, S)) - f(mostFit(f, S_old)) < -0.001
+    f(mostFit(f, S))
 
-        fitS = mostFit(f, S);
+    S_old = S;
 
-        for i = 1:size(plotter, 2)
-            set(plotter(i), 'Visible', 'off');
-        end
+    S = wrw(f, S);
 
-        plotter = plotFunc(fitS);
+    S = reproduction(S, 10);
+
+    S = mutation(S, 10);
+
+    fitS = mostFit(f, S);
+
+    for i = 1:size(plotter, 2)
+        set(plotter(i), 'Visible', 'off');
     end
+
+    plotter = plotFunc(fitS);
+
+%     f(mostFit(f, S))
+
+    retry = retry + 1;
 end
 
-function [mostFit] = mostFit(f, S)
+retry
+
+S = S_old;
+
+function [mostFitS] = mostFit(f, S)
 
 fitMat = fitness(f, S);
 
 [~, index] = sort(fitMat, 'ascend');
 
-mostFit = S(index(1), :);
+mostFitS = S(index(1), :);

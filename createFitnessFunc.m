@@ -1,6 +1,6 @@
 function [f] = createFitnessFunc(beziers, a, b)
 
-f = @(t) norm(diff(rearrangeMat(cell2mat(cellfun(@(bez, i) bez(t(i)), beziers, num2cell(1:length(t)), 'UniformOutput', false)), a, b)));
+f = @(t) beziersDistance(beziers, a, b, t);
 
 function [pts] = rearrangeMat(row, a, b)
 
@@ -11,3 +11,15 @@ for i = 1:2:length(row)
     pts((i + 1) / 2 + 1, 2) = row(i + 1);
 end
 pts(2 + length(row) / 2, :) = b(1);
+
+function [dist] = beziersDistance(beziers, a, b, t)
+
+dist = 0;
+curPoint = a;
+for i = 1:numel(beziers)
+    point = beziers{i}(t(i));
+    dist = dist + norm(curPoint - point);
+    curPoint = point;
+end
+
+dist = dist + norm(curPoint - b);

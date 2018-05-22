@@ -18,7 +18,7 @@ end
 f = createFitnessFunc(beziers, inJson.a, inJson.b);
 
 % result = ga(f, numel(beziers), [], [], [], [], zeros(1, numel(beziers)), ones(1, numel(beziers)))
-result = customGA(f, numel(beziers), 10, @(t) plotPathGA(beziers, inJson.a, inJson.b, t));
+result = customGA(f, numel(beziers), 1000, @(t) plotPathGA(beziers, inJson.a, inJson.b, t));
 
 % pts = [];
 % pts(1, :) = inJson.a;
@@ -27,7 +27,8 @@ result = customGA(f, numel(beziers), 10, @(t) plotPathGA(beziers, inJson.a, inJs
 % end
 % pts(2 + numel(beziers), :) = inJson.b;
 
-% plotPath(pts);
+% plot(pts(:,1),pts(:,2),'k-','LineWidth',2);
+% plot(pts(:, 1),pts(:, 2),'ro','MarkerSize',10,'MarkerFaceColor','r');
 
 curvesToJson(inJson, 'output.json');
 
