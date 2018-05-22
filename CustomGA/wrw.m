@@ -1,6 +1,4 @@
-function [S_new] = wrw(f, S, n)
-
-S
+function [S_new] = wrw(f, S)
 
 fitS = fitness(f, S);
 
@@ -14,11 +12,13 @@ alphaS = [0 alphaS];
 
 S_new = [];
 
+[~, fitIndex] = sort(fitS, 'ascend');
+
 for i = 1:size(fitS, 2)
     randomNum = rand;
     for j = 1:size(alphaS, 2) - 1
         if randomNum >= alphaS(j) && randomNum <=alphaS(j + 1)
-            S_new(i, :) = S(j, :);
+            S_new(i, :) = S(find(fitIndex == j), :);
             break;
         end
     end

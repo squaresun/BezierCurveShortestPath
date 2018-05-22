@@ -17,16 +17,17 @@ end
 
 f = createFitnessFunc(beziers, inJson.a, inJson.b);
 
-result = ga(f, numel(beziers), [], [], [], [], zeros(1, numel(beziers)), ones(1, numel(beziers)))
+% result = ga(f, numel(beziers), [], [], [], [], zeros(1, numel(beziers)), ones(1, numel(beziers)))
+result = customGA(f, numel(beziers), 10, @(t) plotPathGA(beziers, inJson.a, inJson.b, t));
 
-pts = [];
-pts(1, :) = inJson.a;
-for i = 1:numel(beziers)
-    pts(i + 1, :) = beziers{i}(result(i));
-end
-pts(2 + numel(beziers), :) = inJson.b;
+% pts = [];
+% pts(1, :) = inJson.a;
+% for i = 1:numel(beziers)
+%     pts(i + 1, :) = beziers{i}(result(i));
+% end
+% pts(2 + numel(beziers), :) = inJson.b;
 
-plotPath(pts);
+% plotPath(pts);
 
 curvesToJson(inJson, 'output.json');
 
