@@ -1,3 +1,6 @@
 [submodule "jsonlab"]
 	path = jsonlab
 	url = https://github.com/fangq/jsonlab.git
+[submodule "SimpleGA"]
+	path = SimpleGA
+	url = https://github.com/squaresun/SimpleGA.git

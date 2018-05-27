@@ -1,5 +1,5 @@
 addpath('./jsonlab/');
-addpath('./CustomGA/');
+addpath('./SimpleGA/');
 
 close all;
 
@@ -18,7 +18,7 @@ end
 f = createFitnessFunc(beziers, inJson.a, inJson.b);
 
 % result = ga(f, numel(beziers), [], [], [], [], zeros(1, numel(beziers)), ones(1, numel(beziers)))
-result = customGA(f, numel(beziers), 1000, @(t) plotPathGA(beziers, inJson.a, inJson.b, t));
+result = simpleGA(f, numel(beziers), 1000, 100, plotPathGA(f, beziers, inJson.a, inJson.b));
 
 % pts = [];
 % pts(1, :) = inJson.a;
@@ -30,7 +30,5 @@ result = customGA(f, numel(beziers), 1000, @(t) plotPathGA(beziers, inJson.a, in
 % plot(pts(:,1),pts(:,2),'k-','LineWidth',2);
 % plot(pts(:, 1),pts(:, 2),'ro','MarkerSize',10,'MarkerFaceColor','r');
 
-curvesToJson(inJson, 'output.json');
-
-title(['Genetic Algorithm']);
+title('Genetic Algorithm');
 axis([0 2 0 2]);

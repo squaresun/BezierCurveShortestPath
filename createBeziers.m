@@ -1,6 +1,6 @@
 function [beziers] = createBeziers(curves)
 
-beziers = {};
+beziers = cell(1, numel(curves));
 for i = 1:numel(curves)
     p = curves{i};
     if p(size(p, 1), :) ~= p(1, :)
@@ -16,7 +16,6 @@ t = normT(t);
 
 n = size(p,1);
 m = length(t);
-T = zeros(n,n);
 val = zeros(m,2);
 X(:,1) = p(:,1);
 Y(:,1) = p(:,2);
