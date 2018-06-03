@@ -2,7 +2,7 @@
 
 This project finds the shortest path of a sequence of bezier curves, with starting and ending fixed point, with optimization using Matlab. The [example.m](https://github.com/squaresun/BezierCurveShortestPath/blob/master/example.m) uses my own implementation of [Genetic Algorithm](https://en.wikipedia.org/wiki/Genetic_algorithm) to find the shortest path. You can also apply other optimization method, from Matlab or your implemented, on this case.
 
-[[https://github.com/squaresun/BezierCurveShortestPath/wiki/Result.png]]
+![](https://github.com/squaresun/BezierCurveShortestPath/wiki/Result.png)
 
 ## Folder Structure
 
