@@ -2,12 +2,7 @@ function [beziers] = createBeziers(curves)
 
 beziers = cell(1, numel(curves));
 for i = 1:numel(curves)
-    p = curves{i};
-    if p(size(p, 1), :) ~= p(1, :)
-        newIndex = size(p, 1) + 1;
-        p(newIndex, :) = p(1, :);
-    end
-    beziers{i} = @(t)evalBezier(p, t);
+    beziers{i} = @(t)evalBezier(curves{i}, t);
 end
 
 function [val] = evalBezier(p,t)
