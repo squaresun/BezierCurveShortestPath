@@ -49,6 +49,8 @@ beziers =
     {@(t)evalBezier(p,t)}    {@(t)evalBezier(p,t)}    {@(t)evalBezier(p,t)}    {@(t)evalBezier(p,t)}    {@(t)evalBezier(p,t)}    {@(t)evalBezier(p,t)}    {@(t)evalBezier(p,t)}
 ```
 
+---
+
 ### createFitnessFunc.m
 
 Creates fitness function, i.e. total distance between all bezier curves from start to end point, with given vector, t.
@@ -96,6 +98,8 @@ f =
     @(t)beziersDistance(beziers,a,b,t)
 ```
 
+---
+
 ### normT.m
 
 Normalize a number in range [0, 1]
@@ -107,6 +111,8 @@ A number, t.
 #### Output:
 
 A normalized number in range [0, 1]
+
+---
 
 ### plotBezier.m
 
@@ -126,6 +132,8 @@ ans =
 #### Output:
 
 Plot bezier curve on graph.
+
+---
 
 ### input.json
 
